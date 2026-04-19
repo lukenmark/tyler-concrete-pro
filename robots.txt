@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lukenmark.github.io/tyler-concrete-pro/sitemap.xml
