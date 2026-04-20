@@ -187,8 +187,9 @@
 
     :root {
       --charcoal: #1a1a1a;
-      --orange: #E8600A;
-      --orange-dark: #c44e06;
+      --navy: #002F6C;
+      --orange: #CB6015;
+      --orange-dark: #a84e10;
       --white: #ffffff;
       --light-gray: #f5f5f5;
       --mid-gray: #e0e0e0;
@@ -225,7 +226,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--charcoal);
+      background: var(--navy);
       padding: 14px 20px;
       display: flex;
       align-items: center;
@@ -357,7 +358,8 @@
       flex-wrap: wrap;
     }
 
-    .btn-hero-call {
+    .btn-hero-call,
+    .btn-primary {
       background: var(--orange);
       color: var(--white);
       font-family: 'Montserrat', sans-serif;
@@ -367,10 +369,16 @@
       border-radius: var(--radius);
       display: inline-block;
       transition: background 0.2s;
-      box-shadow: 0 4px 16px rgba(232,96,10,0.4);
+      box-shadow: 0 4px 16px rgba(203,96,21,0.4);
     }
 
-    .btn-hero-call:hover { background: var(--orange-dark); }
+    .btn-hero-call:hover,
+    .btn-primary:hover { background: var(--orange-dark); }
+
+    .btn-large {
+      font-size: clamp(1.05rem, 2.8vw, 1.25rem);
+      padding: 18px 40px;
+    }
 
     /* ===== SECTION BASE ===== */
     section { padding: 64px 20px; }
@@ -718,7 +726,7 @@
       cursor: pointer;
       width: 100%;
       transition: background 0.2s;
-      box-shadow: 0 4px 16px rgba(232,96,10,0.35);
+      box-shadow: 0 4px 16px rgba(203,96,21,0.35);
     }
 
     .btn-submit:hover { background: var(--orange-dark); }
@@ -796,6 +804,8 @@
     /* ===== GENERAL RESPONSIVE ===== */
     @media (max-width: 768px) {
       section { padding: 48px 16px; }
+      #services .container > div { flex-direction: column !important; }
+      #services .container > div > div { flex: 1 1 100% !important; min-width: 0 !important; }
     }
   </style>
 </head>
@@ -826,8 +836,7 @@
         Serving Tyler, TX and all of Smith County. Get a free estimate on driveways, patios, foundations, and more — no pressure, no obligation.
       </p>
       <div class="hero-ctas">
-        <a href="tel:PHONE_PLACEHOLDER" class="btn-hero-call">📞 Call Now</a>
-        <a href="#quote" class="btn-outline">Get a Free Quote</a>
+        <a href="tel:+1PHONE_PLACEHOLDER" class="btn-primary btn-large">Call PHONE_PLACEHOLDER</a>
       </div>
     </div>
   </section>
@@ -835,45 +844,87 @@
   <!-- ===== SERVICES ===== -->
   <section id="services">
     <div class="container">
-      <h2 class="section-title">Concrete Services in <span class="accent">Tyler, TX</span></h2>
-      <p class="section-subtitle">From driveways to commercial flatwork — we handle it all, built to last in East Texas.</p>
-      <img
-        src="https://images.pexels.com/photos/33405139/pexels-photo-33405139.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80"
-        alt="Concrete driveway installation Tyler TX"
-        class="section-photo"
-        loading="lazy"
-      >
-      <div class="services-grid">
-        <div class="service-card">
-          <span class="service-icon">🚗</span>
-          <h3>Concrete Driveways</h3>
-          <p>We install durable concrete driveways built for Tyler's climate and soil conditions. From basic broom finishes to decorative stamped surfaces, we pour it right the first time.</p>
+      <div style="display:flex; gap:3rem; align-items:flex-start; flex-wrap:wrap;">
+
+        <!-- Left column: SEO content + photo -->
+        <div style="flex:0 0 60%; min-width:280px;">
+          <h2 style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(1.6rem,4vw,2.2rem); color:#1a1a1a; margin-bottom:1.25rem;">Tyler's Trusted Concrete Contractor</h2>
+          <p style="font-size:1rem; color:#555555; line-height:1.75;">
+            When you need a reliable concrete contractor in Tyler, TX, Tyler Concrete Pro delivers quality work that stands up to East Texas weather and soil conditions. We serve all of Smith County and the surrounding East Texas region, handling everything from concrete driveways and backyard patios to full foundations and slabs. Whether you want a plain broom-finished driveway or a custom stamped concrete patio with decorative colors and patterns, our experienced crew gets the job done right. We also specialize in commercial flatwork for businesses across Tyler and the surrounding area. Every project starts with a free estimate — we come to your property, assess the site, and give you a detailed written quote with no pressure and no obligation. Tyler Concrete Pro is fully licensed and insured, locally owned, and has been a trusted name in East Texas concrete for over a decade.
+          </p>
+          <img
+            src="https://images.pexels.com/photos/33405139/pexels-photo-33405139.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80"
+            alt="Concrete driveway installation Tyler TX"
+            loading="lazy"
+            style="width:100%; border-radius:8px; margin-top:1.5rem; display:block; object-fit:cover;"
+          >
         </div>
-        <div class="service-card">
-          <span class="service-icon">🌿</span>
-          <h3>Patios & Walkways</h3>
-          <p>Transform your Tyler backyard with a custom concrete patio or walkway. We design around your lifestyle and finish to match your home's aesthetic — perfect for East Texas outdoor living.</p>
+
+        <!-- Right column: lead capture form -->
+        <div style="flex:1 1 300px; min-width:280px;">
+          <div style="background:#f8f9fa; padding:2rem; border-radius:8px; box-shadow:0 2px 16px rgba(0,0,0,0.08);">
+            <h3 style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.25rem; color:#1a1a1a; margin-bottom:1.5rem;">Get Your Free Estimate</h3>
+            <form
+              action="https://hooks.zapier.com/hooks/catch/GHL_WEBHOOK_KEY_PLACEHOLDER/"
+              method="POST"
+              style="display:flex; flex-direction:column; gap:14px;"
+            >
+              <!-- Honeypot -->
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+              <div style="display:flex; flex-direction:column; gap:5px;">
+                <label style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.82rem; color:#333; text-transform:uppercase; letter-spacing:0.4px;" for="est-name">Name</label>
+                <input type="text" id="est-name" name="name" placeholder="Your name" required
+                  style="border:1px solid #ddd; border-radius:6px; padding:11px 14px; font-family:'Inter',sans-serif; font-size:0.95rem; color:#1a1a1a; background:#fff; transition:border-color 0.2s;">
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:5px;">
+                <label style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.82rem; color:#333; text-transform:uppercase; letter-spacing:0.4px;" for="est-phone">Phone</label>
+                <input type="tel" id="est-phone" name="phone" placeholder="(903) 000-0000" required
+                  style="border:1px solid #ddd; border-radius:6px; padding:11px 14px; font-family:'Inter',sans-serif; font-size:0.95rem; color:#1a1a1a; background:#fff; transition:border-color 0.2s;">
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:5px;">
+                <label style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.82rem; color:#333; text-transform:uppercase; letter-spacing:0.4px;" for="est-email">Email</label>
+                <input type="email" id="est-email" name="email" placeholder="you@email.com" required
+                  style="border:1px solid #ddd; border-radius:6px; padding:11px 14px; font-family:'Inter',sans-serif; font-size:0.95rem; color:#1a1a1a; background:#fff; transition:border-color 0.2s;">
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:5px;">
+                <label style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.82rem; color:#333; text-transform:uppercase; letter-spacing:0.4px;" for="est-service">Service Needed</label>
+                <select id="est-service" name="service" required
+                  style="border:1px solid #ddd; border-radius:6px; padding:11px 14px; font-family:'Inter',sans-serif; font-size:0.95rem; color:#1a1a1a; background:#fff; appearance:none; -webkit-appearance:none;">
+                  <option value="" disabled selected>Select a service...</option>
+                  <option value="Driveway">Driveway</option>
+                  <option value="Patio/Walkway">Patio/Walkway</option>
+                  <option value="Foundation/Slab">Foundation/Slab</option>
+                  <option value="Decorative/Stamped">Decorative/Stamped</option>
+                  <option value="Concrete Repair">Concrete Repair</option>
+                  <option value="Commercial Flatwork">Commercial Flatwork</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:5px;">
+                <label style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.82rem; color:#333; text-transform:uppercase; letter-spacing:0.4px;" for="est-time">Best Time to Call</label>
+                <select id="est-time" name="best_time"
+                  style="border:1px solid #ddd; border-radius:6px; padding:11px 14px; font-family:'Inter',sans-serif; font-size:0.95rem; color:#1a1a1a; background:#fff; appearance:none; -webkit-appearance:none;">
+                  <option value="" disabled selected>Select a time...</option>
+                  <option value="Morning">Morning</option>
+                  <option value="Afternoon">Afternoon</option>
+                  <option value="Evening">Evening</option>
+                </select>
+              </div>
+
+              <button type="submit"
+                style="background:#CB6015; color:#fff; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1rem; padding:14px 24px; border-radius:6px; border:none; cursor:pointer; width:100%; margin-top:4px; transition:background 0.2s; box-shadow:0 3px 12px rgba(203,96,21,0.3);"
+                onmouseover="this.style.background='#a84e10'" onmouseout="this.style.background='#CB6015'">
+                Request Free Quote
+              </button>
+            </form>
+          </div>
         </div>
-        <div class="service-card">
-          <span class="service-icon">🏗️</span>
-          <h3>Foundations & Slabs</h3>
-          <p>Solid concrete foundations and slabs are the backbone of any build in Tyler. We engineer each pour to handle East Texas soil conditions and seasonal moisture changes.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🎨</span>
-          <h3>Decorative & Stamped Concrete</h3>
-          <p>Stamped concrete lets Tyler homeowners achieve the look of stone, brick, or wood at a fraction of the cost. Color, pattern, and texture options are nearly limitless.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🔧</span>
-          <h3>Concrete Repair</h3>
-          <p>Cracked, settled, or spalling concrete? Our Tyler repair team can resurface, fill, or replace damaged sections to restore safety and curb appeal affordably.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🏢</span>
-          <h3>Commercial Flatwork</h3>
-          <p>We handle large-scale commercial concrete flatwork for businesses in Tyler and throughout Smith County — parking lots, loading docks, warehouse floors, and more.</p>
-        </div>
+
       </div>
     </div>
   </section>
